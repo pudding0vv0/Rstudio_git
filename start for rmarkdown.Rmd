@@ -1,0 +1,87 @@
+---
+title: "Rmarkdown_notes"
+author: "xiaolong"
+date: "2022/11/8"
+output: html_document
+---
+
+### 重点
+
+### 可以直接引入期刊论文模板
+
+\*`r` 打上点r后自动加后面的点
+
+\*注意使用文档和代码间的转化，方便调整字体加粗倾斜，table插入等
+
+1 include=FALSE 导出时不输出代码
+
+2 保存后输出，点击knit即可
+
+3 插入连接指向 [guanwang](http://rmarkdown.rstudio.com)
+
+4 全文输出样式设定(要放在代码块中)，即模块设置按钮 knitr::opts_chunk\$set(prompt=TRUE,comment='666', collapse=T, message= F, echo= T) 如果想特别设定某个代码块，直接设定该代码块的按钮即可
+
+(4 下面的命令可以在模块的右上角的设置按钮设置 `echo = FALSE` 控制markdown是否显示该块代码，F时代码块不出现在结果中； `include=FALSE` 仅运行，不写入到生成的文档中 `eval=FALSE` 代码显示而实际不运行，可在后面被引用
+
+5 代码开始前符号设定（没什么用） `prompt=TRUE`,输出端代码开头显示\> `comment='666'`，代码开始前的符号，一般什么也不加comment='' `collapse=TRUE`, 代码前输出为\#\#
+
+6 `results='hide'`控制输出样式，和前面功能差不多
+
+{r include=FALSE,echo=FALSE,eval=FALSE,prompt=TRUE,comment='666',collapse=TRUE,results='markup',''character''=T}
+knitr::opts_chunk$set(echo = TRUE)
+
+7)  `warning and error` 是否显示，模块控制键设定
+
+{}前方的r表示r语言, 空格后在后面跟上模块标题,只能跟英文且只显示第一个词（中文不显示）**ww [*water*]{.ul}**
+
+### Including Plots
+
+图片居中,图片标题/副标题,图片缩放out.height='60%'
+
+{r 图片设定, eval=FALSE, fig.align='center', fig.show='hold', fig.subcap=, fig.width=, , fig.cap=, include=FALSE, out.height='60%'}
+plot(pressure)
+
+
+当前工作路径中的图片可以直接用名字导入
+
+![](Happy.jpg){width="3in"} 或者{width=50%}
+
+其他地方的本地图片直接拖拽即可
+
+![you can play](D:/RSSS/Rs_github/Rstudio_git/Happy.jpg "fig1"){width="4in"}
+
+## 表格设定
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
+: table1. work harder, make progress every day
+
+```{r}
+# library(ggplot2)
+x <- 1:10; y <- x^2;
+lmr <- lm(y~x)
+co <- summary(lmr)$coefficients
+# print(co)  会覆盖下面knitr的功能
+```
+
+```{r }
+knitr::kable(co,digits = 2, align = 'c')
+```
+
+### 字体基本设置（用处不大，可切换文本后用上方按钮设置）
+
+1.一级标题\#二级标题\#\#以此类推
+
+2.  如何加粗**Markdown**中字体呢(在object两边加\*\*或者双下划线\_\_)
+
+3.  **斜体**(在*object*两边加\*或者\_)
+
+4.  分割线: 使用连续的三个\*就可以出来分割线了
+
+5.  插入图片：使用快捷键 Ctrl+ Shift + H
+
+6.引用：输入一段话 ，在该内容前加空格便可以实现引用
